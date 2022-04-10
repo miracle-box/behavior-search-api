@@ -1,6 +1,7 @@
 {
 	"name": "behavior-search-api",
 	"version": "1.0.0",
+	"private": true,
 	"description": "Search behavior logs in Elasticsearch and throw them back to the frontend.",
 	"author": "The Miracle Box",
 	"license": "MIT",
@@ -15,7 +16,8 @@
 	},
 	"scripts": {
 		"cm": "cz",
-		"lint": " xo --fix && prettier --write \"{,!(node_modules)/**/}*.{cjs,mjs,js,ts,vue,html,css,scss,json}\""
+		"lint": " xo --fix && prettier --write \"{,!(node_modules)/**/}*.{cjs,mjs,js,ts,vue,html,css,scss,json}\"",
+		"postinstall": "husky install"
 	},
 	"dependencies": {
 		"@elastic/elasticsearch": "^8.1.0",
