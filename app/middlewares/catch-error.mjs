@@ -7,7 +7,7 @@ const catchError = async (ctx, next) => {
 		if (error instanceof requestException) {
 			// Response error code and message
 			ctx.body = {
-				code: error.code,
+				code: error.errorCode,
 				message: error.message,
 			};
 			// HTTP status code

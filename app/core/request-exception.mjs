@@ -3,7 +3,7 @@ class RequestException extends Error {
 		super();
 		this.errorCode = errorCode;
 		this.code = code;
-		this.msg = message;
+		this.message = message;
 	}
 }
 
