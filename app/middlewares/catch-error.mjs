@@ -1,10 +1,10 @@
-import requestException from '../core/request-exception.mjs';
+import RequestException from '../core/request-exception.mjs';
 
 const catchError = async (ctx, next) => {
 	try {
 		await next();
 	} catch (error) {
-		if (error instanceof requestException) {
+		if (error instanceof RequestException) {
 			// Response error code and message
 			ctx.body = {
 				code: error.errorCode,
