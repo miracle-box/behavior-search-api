@@ -1,3 +1,5 @@
+import config from '../../config/config.mjs';
+
 export default function validateTimeRange(since, until) {
 	const now = Date.now();
 	const sinceTime = new Date(since).getTime();
@@ -5,12 +7,12 @@ export default function validateTimeRange(since, until) {
 
 	// Since > Until
 	const isRangeInvalid = sinceTime > untilTime;
-	// Less than 1 hour from now.
-	const isTooLate = untilTime > now - 3_600_000;
-	// More than 3 days from now.
-	const isTooEarly = sinceTime < now - 259_200_000;
-	// Range less than 20 minutes.
-	const isRangeToNarrow = untilTime - sinceTime < 1_200_000;
+	// Less than x ms earlier thar now.
+	const isTooLate = untilTime > now - config.searching.limits.time.notLessThan;
+	// More than x ms earlier than now.
+	const isTooEarly = sinceTime < now - config.searching.limits.time.notMoreThan;
+	// Range less than x ms.
+	const isRangeToNarrow = untilTime - sinceTime < config.searching.limits.time.minDuration;
 
 	return !(isRangeInvalid || isTooLate || isTooEarly || isRangeToNarrow);
 }
