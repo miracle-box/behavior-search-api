@@ -23,8 +23,9 @@
 	},
 	"dependencies": {
 		"@elastic/elasticsearch": "^8.1.0",
+		"@koa/router": "^10.1.1",
 		"koa": "^2.13.4",
-		"koa-router": "^10.1.1"
+		"koa-body": "^4.2.0"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^16.2.3",

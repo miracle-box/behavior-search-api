@@ -1,4 +1,5 @@
 import Koa from 'koa';
+import koaBody from 'koa-body';
 
 import config from '../config/config.mjs';
 import routes from './routes/index.mjs';
@@ -13,6 +14,7 @@ app.use(async (ctx, next) => {
 	console.log(`${new Date().toISOString()} ${ctx.method} ${ctx.url} - ${ms}ms`);
 });
 
+app.use(koaBody());
 app.use(routes.routes(), routes.allowedMethods());
 
 app.listen(config.server.port);
