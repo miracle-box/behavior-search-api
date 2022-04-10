@@ -15,6 +15,8 @@
 		"url": "https://github.com/miracle-box/behavior-search-api/issues"
 	},
 	"scripts": {
+		"run": "node index.mjs",
+		"dev": "nodemon index.mjs",
 		"cm": "cz",
 		"lint": "xo --fix && prettier --write \"{,!(node_modules)/**/}*.{cjs,mjs,js,json}\"",
 		"postinstall": "husky install"
@@ -31,6 +33,7 @@
 		"cz-conventional-changelog": "^3.3.0",
 		"husky": "^7.0.4",
 		"lint-staged": "^12.3.7",
+		"nodemon": "^2.0.15",
 		"prettier": "^2.6.2",
 		"xo": "^0.48.0"
 	},
