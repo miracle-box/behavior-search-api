@@ -25,6 +25,14 @@ const config = {
 				notLessThan: 3_600_000,
 				minDuration: 1_200_000,
 			},
+			subject: {
+				minItems: 1,
+				maxItems: 3,
+			},
+			object: {
+				minItems: 1,
+				maxItems: 12,
+			},
 		},
 	},
 };

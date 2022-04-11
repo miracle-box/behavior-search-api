@@ -1,10 +1,7 @@
-import fs from 'node:fs';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 
-let schema = {};
-
-schema = JSON.parse(fs.readFileSync('./app/resources/query-request-schema.json'));
+import schema from '../resources/query-request-schema.mjs';
 
 const ajv = new Ajv();
 addFormats(ajv);
