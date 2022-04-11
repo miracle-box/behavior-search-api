@@ -5,7 +5,7 @@ const queryRequestSchema = {
 	$schema: 'http://json-schema.org/draft-07/schema',
 	$id: 'https://sagirii.me/behavior-logging/query/request/schema',
 	type: 'object',
-	required: ['timestamp', 'subject', 'locations.subject'],
+	required: ['timestamp', 'subject', 'locations'],
 	additionalProperties: false,
 	properties: {
 		sort_index: {
@@ -84,99 +84,106 @@ const queryRequestSchema = {
 				},
 			],
 		},
-		'locations.subject': {
-			type: ['object', 'null'],
-			oneOf: [
-				{
-					type: 'object',
-					required: ['least', 'most'],
-					additionalProperties: false,
-					properties: {
-						least: {
+		locations: {
+			type: 'object',
+			required: ['subject'],
+			additionalProperties: false,
+			properties: {
+				subject: {
+					type: ['object', 'null'],
+					oneOf: [
+						{
 							type: 'object',
-							required: ['x', 'y', 'z'],
+							required: ['least', 'most'],
 							additionalProperties: false,
 							properties: {
-								x: {
-									type: 'integer',
+								least: {
+									type: 'object',
+									required: ['x', 'y', 'z'],
+									additionalProperties: false,
+									properties: {
+										x: {
+											type: 'integer',
+										},
+										y: {
+											type: 'integer',
+										},
+										z: {
+											type: 'integer',
+										},
+									},
 								},
-								y: {
-									type: 'integer',
-								},
-								z: {
-									type: 'integer',
+								most: {
+									type: 'object',
+									required: ['x', 'y', 'z'],
+									additionalProperties: false,
+									properties: {
+										x: {
+											type: 'integer',
+										},
+										y: {
+											type: 'integer',
+										},
+										z: {
+											type: 'integer',
+										},
+									},
 								},
 							},
 						},
-						most: {
+						{
+							type: 'null',
+						},
+					],
+				},
+				object: {
+					type: ['object', 'null'],
+					oneOf: [
+						{
 							type: 'object',
-							required: ['x', 'y', 'z'],
+							required: ['least', 'most'],
 							additionalProperties: false,
 							properties: {
-								x: {
-									type: 'integer',
+								least: {
+									type: 'object',
+									required: ['x', 'y', 'z'],
+									additionalProperties: false,
+									properties: {
+										x: {
+											type: 'integer',
+										},
+										y: {
+											type: 'integer',
+										},
+										z: {
+											type: 'integer',
+										},
+									},
 								},
-								y: {
-									type: 'integer',
-								},
-								z: {
-									type: 'integer',
+								most: {
+									type: 'object',
+									required: ['x', 'y', 'z'],
+									additionalProperties: false,
+									properties: {
+										x: {
+											type: 'integer',
+										},
+										y: {
+											type: 'integer',
+										},
+										z: {
+											type: 'integer',
+										},
+									},
 								},
 							},
 						},
-					},
-				},
-				{
-					type: 'null',
-				},
-			],
-		},
-		'locations.object': {
-			type: ['object', 'null'],
-			oneOf: [
-				{
-					type: 'object',
-					required: ['least', 'most'],
-					additionalProperties: false,
-					properties: {
-						least: {
-							type: 'object',
-							required: ['x', 'y', 'z'],
-							additionalProperties: false,
-							properties: {
-								x: {
-									type: 'integer',
-								},
-								y: {
-									type: 'integer',
-								},
-								z: {
-									type: 'integer',
-								},
-							},
+						{
+							type: 'null',
 						},
-						most: {
-							type: 'object',
-							required: ['x', 'y', 'z'],
-							additionalProperties: false,
-							properties: {
-								x: {
-									type: 'integer',
-								},
-								y: {
-									type: 'integer',
-								},
-								z: {
-									type: 'integer',
-								},
-							},
-						},
-					},
+					],
 				},
-				{
-					type: 'null',
-				},
-			],
+			},
 		},
 	},
 	/* eslint-enable camelcase */
