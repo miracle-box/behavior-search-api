@@ -23,6 +23,7 @@ app.use(
 	}),
 );
 
-app.use(routes.routes(), routes.allowedMethods());
+app.use(routes.routes());
+app.use(routes.allowedMethods());
 
 app.listen(config.server.port);

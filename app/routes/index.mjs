@@ -4,6 +4,6 @@ import query from './query.mjs';
 
 const router = new Router();
 
-router.use(query.routes(), query.allowedMethods());
+router.use(query.routes());
 
 export default router;
