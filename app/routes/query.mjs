@@ -1,15 +1,9 @@
 import Router from '@koa/router';
 
-import validateTimeRange from '../utils/validate-time-range.mjs';
+import postQuery from '../server/query/post.mjs';
 
 const router = new Router();
 
-router.post('/query', async (ctx) => {
-	const body = ctx.request.body;
-
-	ctx.body = {
-		isTimeValid: validateTimeRange(body.timestamp.since, body.timestamp.until),
-	};
-});
+router.post('/query', postQuery);
 
 export default router;
