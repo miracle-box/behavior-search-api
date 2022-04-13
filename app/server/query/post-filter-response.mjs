@@ -4,7 +4,8 @@ function getRandNumber() {
 	const min = config.searching.desensitizing.locations.minRandom;
 	const max = config.searching.desensitizing.locations.maxRandom;
 
-	return Number.parseInt(Math.random() * (max - min + 1) + min, 10);
+	const random = Number.parseInt(Math.random() * (max - min + 1) + min, 10);
+	return Math.random() > 0.5 ? random : -random;
 }
 
 export default function postFilterResponse(r) {
