@@ -18,7 +18,6 @@ function getRangeQuery(prop, object) {
 function getRangeQueries(q) {
 	const queries = [];
 
-	console.log(q);
 	for (const key in q) {
 		if (isRangeObject(q[key])) {
 			queries.push(getRangeQuery(key, q[key]));
@@ -91,8 +90,6 @@ export default function queryConstructor(q) {
 	if (Array.isArray(q.sort_index)) {
 		queryDSL.search_after = q.sort_index;
 	}
-
-	console.log(JSON.stringify(queryDSL));
 	/* eslint-enable camelcase */
 
 	return queryDSL;
