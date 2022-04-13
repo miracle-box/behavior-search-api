@@ -33,6 +33,13 @@ const config = {
 				minItems: 1,
 				maxItems: 12,
 			},
+			pageSize: 100,
+		},
+		desensitizing: {
+			locations: {
+				minRandom: 8,
+				maxRandom: 24,
+			},
 		},
 	},
 };

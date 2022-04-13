@@ -4,7 +4,8 @@ import elastic from '../../utils/elastic.mjs';
 
 import validateLocationRange from '../../utils/validate-location-range.mjs';
 import validateTimeRange from '../../utils/validate-time-range.mjs';
-import validateRequest from './validate-request.mjs';
+import filterResponse from './post-filter-response.mjs';
+import validateRequest from './post-validate-request.mjs';
 
 async function queryPost(ctx) {
 	const data = ctx.request.body;
@@ -66,21 +67,32 @@ async function queryPost(ctx) {
 
 	// Construst query DSL and execute search.
 	let queryDSL;
-	let result;
 	try {
 		queryDSL = queryConstructor(data);
 	} catch (error) {
-		console.log(error);
 		throw new HttpException('Error constructing query DSL.', `${error.name}: ${error.message}`, 5001, 500);
 	}
 
+	let result;
 	try {
 		result = await elastic.search(queryDSL);
 	} catch (error) {
 		throw new HttpException('Got an error while searching.', `${error.name}: ${error.message}`, 5002, 500);
 	}
 
-	ctx.body = result;
+	let response;
+	try {
+		response = filterResponse(result);
+	} catch (error) {
+		throw new HttpException(
+			'Error parsing Elasticsearch response.',
+			`${error.name}: ${error.message}`,
+			5003,
+			500,
+		);
+	}
+
+	ctx.body = response;
 }
 
 export default queryPost;

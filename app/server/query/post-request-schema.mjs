@@ -1,6 +1,6 @@
 import config from '../../../config/config.mjs';
 
-const requestSchema = {
+const postRequestSchema = {
 	/* eslint-disable camelcase */
 	$schema: 'http://json-schema.org/draft-07/schema',
 	type: 'object',
@@ -166,4 +166,4 @@ const requestSchema = {
 	/* eslint-enable camelcase */
 };
 
-export default requestSchema;
+export default postRequestSchema;
