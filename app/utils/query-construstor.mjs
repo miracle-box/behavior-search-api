@@ -80,6 +80,20 @@ const DSL_BASE = {
 	sort: [{'@timestamp': {order: 'desc'}}],
 };
 
+/**
+ * Constructs Elasticsearch query DSL.
+ *
+ * `sort_index` prop should be match Elasticsearch's `search_after` prop.
+ *
+ * Objects with `gte` and `lte` property will be transformed into `range` queries.
+ *
+ * Arrays which completely consist of `String`s will be transformed into `terms` queries.
+ *
+ * Properites with `null` value will be transformsed into `must_not: exists: []` queries.
+ *
+ * @param {Object} q query paramaters
+ * @returns Elasticsearch Query DSL object
+ */
 export default function queryConstructor(q) {
 	/* eslint-disable camelcase */
 	const queryDSL = {

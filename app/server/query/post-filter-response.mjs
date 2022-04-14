@@ -1,5 +1,9 @@
 import config from '../../../config/config.mjs';
 
+/**
+ * Generate an random location offset according to the application config.
+ * @returns {Number} the generated random offset
+ */
 function getRandNumber() {
 	const min = config.searching.desensitizing.locations.minRandom;
 	const max = config.searching.desensitizing.locations.maxRandom;
@@ -8,6 +12,11 @@ function getRandNumber() {
 	return Math.random() > 0.5 ? random : -random;
 }
 
+/**
+ * Filter the Elasticsearch search results.
+ * @param {Object} r Elasticsearch search response
+ * @returns the filtered and desensitized search result
+ */
 export default function postFilterResponse(r) {
 	/* eslint-disable camelcase */
 	const response = {

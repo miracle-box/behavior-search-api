@@ -1,3 +1,8 @@
+/**
+ * List of application status codes.
+ *
+ * Use `createHttpException` to handle errors.
+ */
 const statusCodes = {
 	4000: {
 		message: 'Malformed request body.',

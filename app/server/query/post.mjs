@@ -7,6 +7,13 @@ import validateTimeRange from '../../utils/validate-time-range.mjs';
 import filterResponse from './post-filter-response.mjs';
 import validateRequest from './post-validate-request.mjs';
 
+/**
+ * Get location array from location object.
+ * @param {Object} data data contains location data
+ * @param {String} prop key of the location data
+ * @param {String} sub key of the location to be validated
+ * @returns {Number[]} the location in array form
+ */
 function getLocation(data, prop, sub) {
 	return [data[`${prop}.x`][sub], data[`${prop}.y`][sub], data[`${prop}.z`][sub]];
 }

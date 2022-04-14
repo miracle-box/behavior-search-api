@@ -1,6 +1,12 @@
 import config from '../../config/config.mjs';
 import createHttpException from './create-http-exception.mjs';
 
+/**
+ * Validates whether the location range is valid.
+ * @param {Number[]} gte the smaller numbers of the location
+ * @param {Number} lte the bigger numbers of the location
+ * @param {String} mode `subject` or `object`
+ */
 export default function validateLocationRange(gte, lte, mode) {
 	let minRanges = [0, 0, 0];
 	let maxRanges = [0, 0, 0];

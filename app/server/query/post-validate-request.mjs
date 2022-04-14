@@ -10,6 +10,10 @@ addFormats(ajv);
 
 const validate = ajv.compile(schema);
 
+/**
+ * Validate `POST` `/query` HTTP body.
+ * @param {Object} data query body to be validated
+ */
 function validateRequest(data) {
 	if (!validate(data)) {
 		throw createHttpException(4011, `${validate.errors[0].instancePath}: ${validate.errors[0].message}`);

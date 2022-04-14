@@ -1,5 +1,8 @@
 import config from '../../../config/config.mjs';
 
+/**
+ * `POST` `/query` HTTP body schema
+ */
 const postRequestSchema = {
 	/* eslint-disable camelcase */
 	$schema: 'http://json-schema.org/draft-07/schema',

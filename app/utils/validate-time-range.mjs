@@ -1,6 +1,11 @@
 import config from '../../config/config.mjs';
 import createHttpException from './create-http-exception.mjs';
 
+/**
+ * Validates whether the time range is valid.
+ * @param {String} since the earlier time stamp
+ * @param {String} until the latter time stamp
+ */
 export default function validateTimeRange(since, until) {
 	const timeLimits = config.searching.limits.time;
 
