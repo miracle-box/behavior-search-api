@@ -165,6 +165,9 @@ const postRequestSchema = {
 				},
 			],
 		},
+		{
+			not: {required: ['data']},
+		},
 	],
 	/* eslint-enable camelcase */
 };
