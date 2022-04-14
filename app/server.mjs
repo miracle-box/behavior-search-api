@@ -7,7 +7,7 @@ import catchError from './middlewares/catch-error.mjs';
 import logging from './middlewares/logging.mjs';
 
 import routes from './routes/index.mjs';
-import HttpException from './core/http-exception.mjs';
+import createHttpException from './utils/create-http-exception.mjs';
 
 const app = new Koa();
 
@@ -18,7 +18,7 @@ app.use(catchError);
 app.use(
 	koaBody({
 		onError(error) {
-			throw new HttpException('Malformed request body.', error.message, 4000, 400);
+			throw createHttpException(4000, error.message);
 		},
 	}),
 );

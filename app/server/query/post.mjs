@@ -1,4 +1,4 @@
-import HttpException from '../../core/http-exception.mjs';
+import createHttpException from '../../utils/create-http-exception.mjs';
 import queryConstructor from '../../utils/query-construstor.mjs';
 import elastic from '../../utils/elastic.mjs';
 
@@ -7,62 +7,33 @@ import validateTimeRange from '../../utils/validate-time-range.mjs';
 import filterResponse from './post-filter-response.mjs';
 import validateRequest from './post-validate-request.mjs';
 
+function getLocation(data, prop, sub) {
+	return [data[`${prop}.x`][sub], data[`${prop}.y`][sub], data[`${prop}.z`][sub]];
+}
+
 async function queryPost(ctx) {
 	const data = ctx.request.body;
 
 	// Validate with JSON Schema.
-	if (!validateRequest(data)) {
-		throw new HttpException(
-			'Malformed values in request body.',
-			`${validateRequest.errors[0].instancePath}: ${validateRequest.errors[0].message}`,
-			4001,
-			400,
-		);
-	}
+	validateRequest(data);
 
 	// Validate time range.
-	if (!validateTimeRange(data['@timestamp'].gte, data['@timestamp'].lte)) {
-		throw new HttpException('Invalid time range.', '', 4002, 400);
-	}
+	validateTimeRange(data['@timestamp'].gte, data['@timestamp'].lte);
 
 	// Validate subject location range
-	if (
-		!validateLocationRange(
-			[
-				data['locations.subject.x'].gte,
-				data['locations.subject.y'].gte,
-				data['locations.subject.z'].gte,
-			],
-			[
-				data['locations.subject.x'].lte,
-				data['locations.subject.y'].lte,
-				data['locations.subject.z'].lte,
-			],
-			'subject',
-		)
-	) {
-		throw new HttpException('Invalid subject location range.', '', 4003, 400);
-	}
+	validateLocationRange(
+		getLocation(data, 'locations.subject', 'gte'),
+		getLocation(data, 'locations.subject', 'lte'),
+		'subject',
+	);
 
 	// Validate object location range
-	if (
-		Object.prototype.hasOwnProperty.call(data, 'locations.object.x') &&
-		data['locations.object.x'] !== null &&
-		!validateLocationRange(
-			[
-				data['locations.object.x'].gte,
-				data['locations.object.y'].gte,
-				data['locations.object.z'].gte,
-			],
-			[
-				data['locations.object.x'].lte,
-				data['locations.object.y'].lte,
-				data['locations.object.z'].lte,
-			],
+	if (Object.prototype.hasOwnProperty.call(data, 'locations.object.x') && data['locations.object.x'] !== null) {
+		validateLocationRange(
+			getLocation(data, 'locations.object', 'gte'),
+			getLocation(data, 'locations.object', 'lte'),
 			'object',
-		)
-	) {
-		throw new HttpException('Invalid object location range.', '', 4004, 400);
+		);
 	}
 
 	// Construst query DSL and execute search.
@@ -70,26 +41,21 @@ async function queryPost(ctx) {
 	try {
 		queryDSL = queryConstructor(data);
 	} catch (error) {
-		throw new HttpException('Error constructing query DSL.', `${error.name}: ${error.message}`, 5001, 500);
+		throw createHttpException(5011, `${error.name}: ${error.message}`);
 	}
 
 	let result;
 	try {
 		result = await elastic.search(queryDSL);
 	} catch (error) {
-		throw new HttpException('Got an error while searching.', `${error.name}: ${error.message}`, 5002, 500);
+		throw createHttpException(5021, `${error.name}: ${error.message}`);
 	}
 
 	let response;
 	try {
 		response = filterResponse(result);
 	} catch (error) {
-		throw new HttpException(
-			'Error parsing Elasticsearch response.',
-			`${error.name}: ${error.message}`,
-			5003,
-			500,
-		);
+		throw createHttpException(5031, `${error.name}: ${error.message}`);
 	}
 
 	ctx.body = response;

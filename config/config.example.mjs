@@ -21,8 +21,8 @@ const config = {
 	searching: {
 		limits: {
 			time: {
-				minTimeBefore: 259_200_000,
-				maxTimeBefore: 3_600_000,
+				minTimeBefore: 3_600_000,
+				maxTimeBefore: 259_200_000,
 				minDuration: 1_200_000,
 			},
 			subject: {
