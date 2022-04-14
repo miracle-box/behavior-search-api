@@ -8,9 +8,9 @@ export default function validateTimeRange(since, until) {
 	// Since > Until
 	const isRangeInvalid = sinceTime > untilTime;
 	// Less than x ms earlier thar now.
-	const isTooLate = untilTime > now - config.searching.limits.time.notLessThan;
+	const isTooLate = untilTime > now - config.searching.limits.time.maxTimeBefore;
 	// More than x ms earlier than now.
-	const isTooEarly = sinceTime < now - config.searching.limits.time.notMoreThan;
+	const isTooEarly = sinceTime < now - config.searching.limits.time.minTimeBefore;
 	// Range less than x ms.
 	const isRangeToNarrow = untilTime - sinceTime < config.searching.limits.time.minDuration;
 
