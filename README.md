@@ -239,7 +239,7 @@ _选填项目_
 
 如果要查询的项目不存在该属性，该属性的值应为 `null`。
 
-你可以在配置文件的 `searching.limits.locations.subject` 项配置范围限制。
+你可以在配置文件的 `searching.limits.locations.object` 项配置范围限制。
 
 - 属性
 
