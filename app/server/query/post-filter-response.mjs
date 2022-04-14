@@ -15,7 +15,7 @@ export default function postFilterResponse(r) {
 		time_elapsed: r.took,
 		sort_index: r.hits.hits[r.hits.hits.length - 1].sort,
 		hits: {
-			total: r.total,
+			total: r.hits.total,
 			hits: [],
 		},
 	};
