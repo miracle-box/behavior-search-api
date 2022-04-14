@@ -58,5 +58,6 @@
 	},
 	"xo": {
 		"prettier": true
-	}
+	},
+	"packageManager": "yarn@3.2.0"
 }
