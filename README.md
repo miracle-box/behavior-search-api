@@ -115,8 +115,8 @@ _选填项目_
 
      - ```json
        "@timestamp": {
-           "gte": "2022-04-11T02:00:00.000Z",
-           "lte": "2022-04-13T09:45:00.000Z"
+       	"gte": "2022-04-11T02:00:00.000Z",
+       	"lte": "2022-04-13T09:45:00.000Z"
        }
        ```
 
@@ -222,8 +222,8 @@ _选填项目_
 
      - ```json
        "locations.subject.x": {
-           "gte": -1100,
-           "lte": -980
+       	"gte": -1100,
+       	"lte": -980
        }
        ```
 
@@ -261,8 +261,8 @@ _选填项目_
 
      - ```json
        "locations.object.x": {
-           "gte": -1100,
-           "lte": -980
+       	"gte": -1100,
+       	"lte": -980
        }
        ```
 
@@ -282,26 +282,26 @@ _选填项目_
 
      ```json
      {
-     "code": 2000,
-     "time_elapsed": 7,
-     "sort_index": [1649803856674],
-     "hits": {
-         "total": { "value": 1293, "relation": "eq" },
-         "hits": [
-         {
-             "_id": "WRYlIoABWjyeqlvKizTt",
-             "@timestamp": "2022-04-13T08:58:43.557Z",
-             "type": "使用物品",
-             "subject": "Navaja Pathera",
-             "object": "Composter",
-             "dimension": "Overworld",
-             "data": "类型：minecraft:composter",
-             "locations.object": { "z": null, "x": null, "y": null },
-             "locations.subject": { "x": -1043, "y": 81, "z": -2361 }
-         }
-         ...
-         ]
-     }
+     	"code": 2000,
+     	"time_elapsed": 7,
+     	"sort_index": [1649803856674],
+     	"hits": {
+     		"total": { "value": 1293, "relation": "eq" },
+     		"hits": [
+     		{
+     			"_id": "WRYlIoABWjyeqlvKizTt",
+     			"@timestamp": "2022-04-13T08:58:43.557Z",
+     			"type": "使用物品",
+     			"subject": "Navaja Pathera",
+     			"object": "Composter",
+     			"dimension": "Overworld",
+     			"data": "类型：minecraft:composter",
+     			"locations.object": { "z": null, "x": null, "y": null },
+     			"locations.subject": { "x": -1043, "y": 81, "z": -2361 }
+     		}
+     		...
+     		]
+     	}
      }
      ```
 
