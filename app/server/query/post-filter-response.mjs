@@ -22,7 +22,7 @@ export default function postFilterResponse(r) {
 	const response = {
 		code: 2000,
 		time_elapsed: r.took,
-		sort_index: r.hits.hits[r.hits.hits.length - 1].sort,
+		sort_index: r.hits.hits[r.hits.hits.length - 1]?.sort,
 		hits: {
 			total: r.hits.total,
 			hits: [],
