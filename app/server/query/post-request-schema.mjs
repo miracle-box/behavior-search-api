@@ -16,6 +16,7 @@ const postRequestSchema = {
 	required: ['@timestamp', 'subject', 'locations.subject.x', 'locations.subject.y', 'locations.subject.z'],
 	allOf: [
 		{
+			additionalProperties: false,
 			properties: {
 				sort_index: {
 					type: 'array',
@@ -79,6 +80,12 @@ const postRequestSchema = {
 						{type: 'null'},
 					],
 				},
+				'locations.subject.x': {},
+				'locations.subject.y': {},
+				'locations.subject.z': {},
+				'locations.object.x': {},
+				'locations.object.y': {},
+				'locations.object.z': {},
 			},
 		},
 		{
