@@ -126,8 +126,6 @@ _选填项目_
 
 表示查询的动作发出者，使用数组形式表示。
 
-如果要查询的项目不存在该属性，该属性的值应为 `null`。
-
 你可以在配置文件的 `searching.limits.subject` 项配置范围限制。
 
 - 限制
@@ -140,10 +138,6 @@ _选填项目_
 
      - ```json
        "subject": ["Yaasasi", "Navaja Pathera"]
-       ```
-
-     - ```json
-       "subject": null
        ```
 
 #### `object`

@@ -41,17 +41,11 @@ const postRequestSchema = {
 					items: {type: 'string'},
 				},
 				subject: {
-					type: ['array', 'null'],
-					oneOf: [
-						{
-							type: 'array',
-							maxItems: config.searching.limits.subject.maxItems,
-							minItems: config.searching.limits.subject.minItems,
-							uniqueItems: true,
-							items: {type: 'string'},
-						},
-						{type: 'null'},
-					],
+					type: 'array',
+					maxItems: config.searching.limits.subject.maxItems,
+					minItems: config.searching.limits.subject.minItems,
+					uniqueItems: true,
+					items: {type: 'string'},
 				},
 				object: {
 					type: ['array', 'null'],
