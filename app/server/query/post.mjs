@@ -28,11 +28,13 @@ async function queryPost(ctx) {
 	validateTimeRange(data['@timestamp'].gte, data['@timestamp'].lte);
 
 	// Validate subject location range
-	validateLocationRange(
-		getLocation(data, 'locations.subject', 'gte'),
-		getLocation(data, 'locations.subject', 'lte'),
-		'subject',
-	);
+	if (Object.prototype.hasOwnProperty.call(data, 'locations.object.x') && data['locations.object.x'] !== null) {
+		validateLocationRange(
+			getLocation(data, 'locations.subject', 'gte'),
+			getLocation(data, 'locations.subject', 'lte'),
+			'subject',
+		);
+	}
 
 	// Validate object location range
 	if (Object.prototype.hasOwnProperty.call(data, 'locations.object.x') && data['locations.object.x'] !== null) {
